@@ -1,0 +1,101 @@
+/* Centrer tout le texte de la page */
+body {
+    font-family: Arial, sans-serif;
+    text-align: center; /* Centre tout le texte */
+    margin: 0;
+    padding: 0;
+    background-color: #f9f9f9; /* Couleur de fond agréable */
+    color: #333; /* Couleur du texte */
+}
+
+/* Style pour les titres */
+h1, h2, h3 {
+    color: #2c3e50; /* Couleur des titres */
+    margin-bottom: 20px;
+}
+
+/* Style pour les liens */
+a {
+    text-decoration: none;
+    color: #3498db; /* Couleur des liens */
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+/* Style pour les boutons */
+button, input[type="submit"] {
+    
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    margin: 10px 0;
+    cursor: pointer;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+/* Style spécifique pour les titres des articles */
+.article-title {
+    font-size: 20px; /* Taille de la police plus grande */
+    font-weight: bold; /* Texte en gras */
+    color: #2c3e50; /* Couleur des titres */
+    text-decoration: none; /* Pas de soulignement */
+    transition: color 0.3s ease; /* Animation douce pour le hover */
+}
+
+.article-title:hover {
+    color: #e74c3c; /* Change la couleur au survol */
+    text-decoration: underline; /* Soulignement au survol */
+}
+
+
+button:hover, input[type="submit"]:hover {
+    background-color: #2980b9;
+}
+
+/* Style pour les listes */
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+li {
+    margin: 10px 0;
+}
+
+/* Style pour les formulaires */
+form {
+    display: inline-block;
+    text-align: left;
+    margin-top: 20px;
+    padding: 20px;
+    background: white;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Centrer le formulaire sur la page */
+form {
+    margin: 20px auto;
+    width: 300px;
+}
+
+/* Style pour les inputs */
+input[type="text"], input[type="password"], select {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+/* Pied de page */
+footer {
+    margin-top: 50px;
+    font-size: 14px;
+    color: #888;
+}

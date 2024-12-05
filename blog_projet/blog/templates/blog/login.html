@@ -1,0 +1,26 @@
+{% load i18n %}
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% trans "Connexion" %}</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+    <h1>{% trans "Connexion" %}</h1>
+    <form method="post">
+        {% csrf_token %}
+        <p><label for="username">{% trans "Nom d'utilisateur :" %}</label> <input type="text" name="username" id="username"></p>
+        <p><label for="password">{% trans "Mot de passe :" %}</label> <input type="password" name="password" id="password"></p>
+        <button type="submit">{% trans "Se connecter" %}</button>
+    </form>
+
+    <p>
+        {% trans "Pas encore de compte ?" %}
+        <a href="{% url 'signup' %}">{% trans "Créer un compte" %}</a>
+    </p>
+</body>
+</html>

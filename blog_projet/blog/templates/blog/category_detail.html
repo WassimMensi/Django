@@ -1,0 +1,24 @@
+{% load i18n %}
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{% trans "Détails de la catégorie" %}</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+    <h1>{% blocktrans %}Articles dans la catégorie : {{ category.name }}{% endblocktrans %}</h1>
+    <ul>
+        {% for article in articles %}
+            <li>
+                <a href="{{ article.get_absolute_url }}">{{ article.title }}</a>
+                - {% trans "Publié le" %} {{ article.created_at }}
+            </li>
+        {% empty %}
+            <li>{% trans "Cette catégorie est vide." %}</li>
+        {% endfor %}
+    </ul>
+    <a href="{% url 'category_list' %}">{% trans "Retour à la liste des catégories" %}</a>
+</body>
+</html>

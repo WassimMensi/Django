@@ -1,0 +1,21 @@
+{% load i18n %}
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{% trans "Créer un compte" %}</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+    <h1>{% trans "Créer un compte" %}</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">{% trans "S'inscrire" %}</button>
+    </form>
+    <p>
+        {% trans "Déjà inscrit ?" %}
+        <a href="{% url 'login' %}">{% trans "Se connecter" %}</a>
+    </p>
+</body>
+</html>

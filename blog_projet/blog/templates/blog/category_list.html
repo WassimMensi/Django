@@ -1,0 +1,36 @@
+{% load i18n %}
+{% load static %}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{% trans "Liste des catégories" %}</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+    <h1>{% trans "Liste des catégories" %}</h1>
+    <ul>
+        <li><a href="{% url 'post_list' %}">{% trans "Tous les articles" %}</a> {{ total_articles }} articles
+        </li>
+        {% for category in categories %}
+            <li>
+                <a href="{% url 'category_detail' category.slug %}">{{ category.name }}</a> 
+                {{ category.num_articles }} articles
+            </li>
+        {% empty %}
+            <li>{% trans "Aucune catégorie disponible." %}</li>
+        {% endfor %}
+    </ul>
+    <a href="{% url 'post_list' %}">{% trans "Retour à la liste des articles" %}</a><br>
+
+    <form action="{% url 'set_language' %}" method="post">
+        {% csrf_token %}
+        <select name="language" onchange="this.form.submit()">
+            {% get_current_language as LANGUAGE_CODE %}
+            <option value="fr" {% if LANGUAGE_CODE == 'fr' %}selected{% endif %}>Français</option>
+            <option value="en" {% if LANGUAGE_CODE == 'en' %}selected{% endif %}>English</option>
+            <option value="it" {% if LANGUAGE_CODE == 'it' %}selected{% endif %}>Italiano</option>
+        </select>
+    </form>
+</body>
+</html>

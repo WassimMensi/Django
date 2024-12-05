@@ -1,0 +1,46 @@
+{% load i18n %}
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% trans "Liste des articles" %}</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+    <h1>{% trans "Liste des articles du blog" %}</h1>
+    <a href="{% url 'post_create' %}">{% trans "Ajouter un nouvel article" %}</a><br>
+    <a href="{% url 'create_category' %}">{% trans "Ajouter une nouvelle catégorie" %}</a><br>
+    <a href="{% url 'category_list' %}">{% trans "Retourner aux catégories" %}</a>
+    <ul>
+        {% for post in posts %}
+        <li>
+            <a href="{% url 'post_detail' post.slug %}" class="article-title"> {{ post.title }}</a>
+            <p>Publié le {{ post.created_at }}</p>
+        </li>
+        {% endfor %}
+    </ul>
+    {% if user.is_authenticated %}
+        <form method="post" action="{% url 'logout' %}" style="display: inline;">
+            {% csrf_token %}
+            <button type="submit" style="color: red;">{% trans "Se déconnecter" %}</button>
+        </form>
+    {% else %}
+        <a href="{% url 'login' %}" style="color: green;">{% trans "Se connecter" %}</a>
+    {% endif %}
+    <br>
+    <form action="{% url 'set_language' %}" method="post">
+        {% csrf_token %}
+        <select name="language" onchange="this.form.submit()">
+            {% get_current_language as LANGUAGE_CODE %}
+            <option value="fr" {% if LANGUAGE_CODE == 'fr' %}selected{% endif %}>Français</option>
+            <option value="en" {% if LANGUAGE_CODE == 'en' %}selected{% endif %}>English</option>
+            <option value="it" {% if LANGUAGE_CODE == 'it' %}selected{% endif %}>Italiano</option>
+        </select>
+    </form>
+    
+
+</body>
+</html>

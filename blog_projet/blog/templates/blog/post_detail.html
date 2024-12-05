@@ -1,0 +1,49 @@
+{% load i18n %}
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ post.title }}</title>
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+    <h1>{{ post.title }}</h1>
+    <p>{% trans "Publié le" %} {{ post.created_at }}</p>
+    <p>{% trans "Contenu :"%} {{ post.content }} </p>
+    <p>{% trans "Catégorie :" %}
+        {% if post.category %}
+            {{ post.category.name }}
+        {% else %}
+            Aucune
+        {% endif %}
+    </p><br>
+    <button
+    class="favorite-button"
+    data-post-id="{{ post.id }}"
+    data-favorite="{{ request.user in post.favorites.all }}">
+    {% if post.is_favorited_by(request.user) %}
+        ★
+    {% else %}
+        ☆
+    {% endif %}
+    </button>
+
+    {%if user.is_authenticated %}
+        <a href="{% url 'post_edit' post.slug %}">{% trans "Modifier" %}</a>
+    {% endif %}
+    
+    {% if post.image %}
+        <img src="{{ post.image.url }}" alt="Image de {{ post.title }}">
+    {% endif %}
+    {%if user.is_authenticated %}
+    <a href="{% url 'delete_post' post.slug %}">
+        <button>{% trans "Supprimer" %}</button>
+    </a>
+    {% endif %}
+
+    <a href="{% url 'category_list' %}">{% trans "Retour à la liste" %}</a>
+</body>
+</html>
